@@ -191,7 +191,7 @@ namespace shopping_compare
 			{
 				// Keep the update button on the app bar
 			}
-			else // if we've deselected the TextBox
+			else // if we've deselected the TextBox and focus is not on any TextBox
 			{
 				ApplicationBar.Opacity = APP_BAR_OPACITY;
 				ApplicationBar.Buttons.Remove(_updateButton);

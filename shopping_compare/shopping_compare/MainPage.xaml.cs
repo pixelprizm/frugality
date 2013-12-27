@@ -226,7 +226,7 @@ namespace shopping_compare
 			}
 			else // if we've clicked the update button while focused on a TextBox
 			{
-				// Set the focus to the entire MainPage, thereby removing the focus from currentFocus.  This also causes the LostFocus event to be raised by currentFocus.
+				// Set the focus to the entire MainPage, thereby removing the focus from currentFocus.  This also causes the LostFocus event to be raised (by currentFocus I believe).
 				this.Focus();
 			}
 		}

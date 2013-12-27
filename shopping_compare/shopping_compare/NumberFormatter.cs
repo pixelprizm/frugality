@@ -23,7 +23,7 @@ namespace shopping_compare
 				else
 				{
 					if (val < 0) throw new ArgumentOutOfRangeException();
-					// Here, val is a double in (0,double.MaxValue]
+					// here, val is a double in (0,double.MaxValue]
 					else if (val < 1)
 					{
 						#region commented out: long number handling
@@ -38,6 +38,7 @@ namespace shopping_compare
 
 						return Math.Round(val * 100, 4).ToString() + " cents";
 					}
+					// here, val is a double in [1,double.MaxValue]
 					else
 					{
 						#region commented out: long number handling
@@ -50,14 +51,19 @@ namespace shopping_compare
 						//return "$" + tempDollars;
 						#endregion commented out: long number handling
 
+						String outputString = "$" + Math.Round(val, 4).ToString();
+
 						// Check if a zero will need to be added (to follow the following format: "$24.40")
-						if (val * 10 == Math.Floor(val * 10))
+						if (
+							val != Math.Floor(val) &&  // val is not a whole number, i.e. there will be a decimal place
+							val * 10 == Math.Floor(val * 10) // val * 10 is not a whole number, i.e. there will be only one decimal place
+							)
 						{
-							return "$" + Math.Round(val, 4).ToString() + "0";
+							return outputString + "0";
 						}
 						else
 						{
-							return "$" + Math.Round(val, 4).ToString();
+							return outputString;
 						}
 					}
 				}

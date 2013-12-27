@@ -1,0 +1,13 @@
+C:\Users\Eric\Documents\GitHub\shopping_compare\shopping_compare\shopping_compare\Bin\Debug\ApplicationIcon.png
+C:\Users\Eric\Documents\GitHub\shopping_compare\shopping_compare\shopping_compare\Bin\Debug\Background.png
+C:\Users\Eric\Documents\GitHub\shopping_compare\shopping_compare\shopping_compare\Bin\Debug\shopping_compare.dll
+C:\Users\Eric\Documents\GitHub\shopping_compare\shopping_compare\shopping_compare\Bin\Debug\shopping_compare.pdb
+C:\Users\Eric\Documents\GitHub\shopping_compare\shopping_compare\shopping_compare\Bin\Debug\AppManifest.xaml
+C:\Users\Eric\Documents\GitHub\shopping_compare\shopping_compare\shopping_compare\Bin\Debug\shopping_compare.xap
+C:\Users\Eric\Documents\GitHub\shopping_compare\shopping_compare\shopping_compare\obj\Debug\shopping_compare.csprojResolveAssemblyReference.cache
+C:\Users\Eric\Documents\GitHub\shopping_compare\shopping_compare\shopping_compare\obj\Debug\App.g.cs
+C:\Users\Eric\Documents\GitHub\shopping_compare\shopping_compare\shopping_compare\obj\Debug\MainPage.g.cs
+C:\Users\Eric\Documents\GitHub\shopping_compare\shopping_compare\shopping_compare\obj\Debug\shopping_compare.g.resources
+C:\Users\Eric\Documents\GitHub\shopping_compare\shopping_compare\shopping_compare\obj\Debug\shopping_compare.dll
+C:\Users\Eric\Documents\GitHub\shopping_compare\shopping_compare\shopping_compare\obj\Debug\shopping_compare.pdb
+C:\Users\Eric\Documents\GitHub\shopping_compare\shopping_compare\shopping_compare\obj\Debug\XapCacheFile.xml

@@ -11,8 +11,9 @@ namespace shopping_compare
 		// To convert from double-type data to string UI for the text boxes and the price per unit output:
 		public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
-			double val = (double)value;
+			Money val = (Money)value;
 			string theParameter = parameter as string;
+
 			// For the Price Per Unit output:
 			if (theParameter == "PricePerUnitOutput")
 			{
@@ -20,52 +21,13 @@ namespace shopping_compare
 				{
 					return "";
 				}
+				else if (val < 0)
+				{
+					throw new ArgumentOutOfRangeException();
+				}
 				else
 				{
-					if (val < 0) throw new ArgumentOutOfRangeException();
-					// here, val is a double in (0,double.MaxValue]
-					else if (val < 1)
-					{
-						#region commented out: long number handling
-						//// The following code is used to handle large numbers of significant figures (if using decimals instead of doubles)
-						//string tempCents = (val * 100).ToString();
-						//if(tempCents.Length >= 20)
-						//{
-						//	return tempCents.Remove(20) + " cents";
-						//}
-						//return tempCents + " cents";
-						#endregion commented out: long number handling
-
-						return Math.Round(val * 100, 4).ToString() + " cents";
-					}
-					// here, val is a double in [1,double.MaxValue]
-					else
-					{
-						#region commented out: long number handling
-						//// The following code is used to handle large numbers of significant figures (if using decimals instead of doubles)
-						//string tempDollars = val.ToString();
-						//if(tempDollars.Length >= 20)
-						//{
-						//	return "$" + tempDollars.Remove(20);
-						//}
-						//return "$" + tempDollars;
-						#endregion commented out: long number handling
-
-						String outputString = "$" + Math.Round(val, 4).ToString();
-
-						// Check if a zero will need to be added (to follow the following format: "$24.40")
-						if (
-							val != Math.Floor(val) &&  // val is not a whole number, i.e. there will be a decimal place
-							val * 10 == Math.Floor(val * 10) // val * 10 is not a whole number, i.e. there will be only one decimal place
-							)
-						{
-							return outputString + "0";
-						}
-						else
-						{
-							return outputString;
-						}
-					}
+					return MoneyFormatter.FormattedString(val);
 				}
 			}
 			// For output back to the textboxes:

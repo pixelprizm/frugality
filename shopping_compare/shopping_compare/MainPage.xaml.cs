@@ -91,7 +91,7 @@ namespace shopping_compare
 		}
 
 		/// <summary>
-		/// Adds a new CompareItem to the list and subscribes UpdateColors to the CompareItem's PropertyChanged event
+		/// Adds a new CompareItem to the list and subscribes UpdateColors to the CompareItem'output PropertyChanged event
 		/// </summary>
 		public void AddCompareItem()
 		{
@@ -104,6 +104,7 @@ namespace shopping_compare
 
 		/// <summary>
 		/// Iterates through the CompareItems and updates their ColorIndex values.  The parameter sender must be any CompareItem in the list.
+		/// Note: this is called every time a property of any CompareItem changes; it only does anything if the property is PricePerUnit.
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -159,10 +160,10 @@ namespace shopping_compare
 				}
 				else
 				{
-					// If the range has changed, update the ColorIndex of each CompareItem, normalizing from 0 to 1 based on the item's priceperunit.
+					// If the range has changed, update the ColorIndex of each CompareItem, normalizing from 0 to 1 based on the item'output priceperunit.
 					foreach(CompareItem i in CompareItems)
 					{
-						if(i.Good)
+						if(i.Good && PricePerUnitRange != 0)
 						{
 							i.ColorIndex = (i.PricePerUnit - LowestPricePerUnit) / PricePerUnitRange;
 						}

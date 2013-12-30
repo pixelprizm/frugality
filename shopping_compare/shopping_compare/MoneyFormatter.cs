@@ -8,53 +8,52 @@ namespace shopping_compare
 	static class MoneyFormatter
 	{
 		/// <summary>
-		/// Returns a formatted string for this Money.
+		/// Returns a formatted string for displaying a money value to the screen.
 		/// </summary>
 		/// <returns>a formatted string for this Money</returns>
-		public static String FormattedString(double val)
+		public static string FormattedDollarCentString(double value)
 		{
-			// here, val is a double in (0,double.MaxValue]
-			if (Math.Abs(val) < 1)
+			// here, value is a double in (0,double.MaxValue]
+			if (Math.Abs(value) < 1)
 			{
-				#region commented out: long number handling
-				//// The following code is used to handle large numbers of significant figures (if using decimals instead of doubles and not rounding)
-				//string tempCents = (val * 100).ToString();
-				//if(tempCents.Length >= 20)
-				//{
-				//	return tempCents.Remove(20) + " cents";
-				//}
-				//return tempCents + " cents";
-				#endregion commented out: long number handling
-
-				return Math.Round(val * 100, 4).ToString() + " cents";
+				return Math.Round(value * 100, 4).ToString() + " cents";
 			}
-			// here, val is a double in [1,double.MaxValue] (or that range negative)
+			// here, value is a double in [1,double.MaxValue] (or that range negative)
 			else
 			{
-				#region commented out: long number handling
-				//// The following code is used to handle large numbers of significant figures (if using decimals instead of doubles and not rounding)
-				//string tempDollars = val.ToString();
-				//if(tempDollars.Length >= 20)
-				//{
-				//	return "$" + tempDollars.Remove(20);
-				//}
-				//return "$" + tempDollars;
-				#endregion commented out: long number handling
+				return "$" + ToStringAddZeroIfNeeded(Math.Round(value, 4));
+			}
+		}
 
-				String outputString = "$" + Math.Round(val, 4).ToString();
+		/// <summary>
+		/// Formats the inputted double-type value as a string, and if it will turn out with one decimal place, adds a zero.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static string ToStringAddZeroIfNeeded(double value)
+		{
+			#region commented out: long number handling
+			//// The following code is used to handle large numbers of significant figures (if using decimals instead of doubles and not rounding)
+			//string tempDollars = value.ToString();
+			//if(tempDollars.Length >= 20)
+			//{
+			//	return "$" + tempDollars.Remove(20);
+			//}
+			//return "$" + tempDollars;
+			#endregion commented out: long number handling
 
-				// Check if a zero will need to be added (to follow the following format: "$24.40")
-				if (
-					val != Math.Floor(val) &&  // val is not a whole number, i.e. there will be a decimal place
-					val * 10 == Math.Floor(val * 10) // val * 10 is not a whole number, i.e. there will be only one decimal place
-					)
-				{
-					return outputString + "0";
-				}
-				else
-				{
-					return outputString;
-				}
+			string output = value.ToString();
+			// Check if a zero will need to be added (to follow the following format: "24.40")
+			if (
+				value != Math.Floor(value) &&  // value is not an integer, i.e. there will be a decimal place
+				value * 10 == Math.Floor(value * 10) // value * 10 is not an integer, i.e. there will be only one decimal place
+				)
+			{
+				return output + "0";
+			}
+			else
+			{
+				return output;
 			}
 		}
 	}

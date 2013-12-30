@@ -1,21 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Data; // for IValueConverter
 
 namespace shopping_compare
 {
 	public class NumberFormatter : IValueConverter
 	{
-		// To convert from double-type data to string UI for the text boxes and the price per unit output:
+		/// <summary>
+		/// Converts a double from calculations into a string, either for price per unit output or for output to display in the textboxes.
+		/// </summary>
+		/// <param name="value">(double)</param>
+		/// <param name="targetType"></param>
+		/// <param name="parameter">if equal to "PricePerUnitOutput", value will be formatted to be output for reading price per unit; otherwise, it will be formatted numerically (just adding a zero if needed)</param>
+		/// <param name="culture"></param>
+		/// <returns></returns>
 		public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
-			Money val = (Money)value;
-			string theParameter = parameter as string;
+			double val = (double)value;
+			string parameterString = parameter as string;
 
-			// For the Price Per Unit output:
-			if (theParameter == "PricePerUnitOutput")
+			// Price Per Unit output:
+			if (parameterString == "PricePerUnitOutput")
 			{
 				if (val == 0 || val == -1)
 				{
@@ -27,21 +31,28 @@ namespace shopping_compare
 				}
 				else
 				{
-					return MoneyFormatter.FormattedString(val);
+					return MoneyFormatter.FormattedDollarCentString(val);
 				}
 			}
-			// For output back to the textboxes:
+			// Output back to the textboxes:
 			else
 			{
 				if (val == 0)
 				{
 					return "";
 				}
-				return val.ToString();
+				return MoneyFormatter.ToStringAddZeroIfNeeded(val);
 			}
 		}
 
-		// Called when the user enters a string value into a textbox:
+		/// <summary>
+		/// Converts a string entered into a TextBox into a double to be used in calculations.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <param name="targetType"></param>
+		/// <param name="parameter"></param>
+		/// <param name="culture"></param>
+		/// <returns></returns>
 		public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
 			string val = (string)value;
@@ -51,8 +62,7 @@ namespace shopping_compare
 			{
 				temp = System.Convert.ToDouble(val);
 			}
-			// If that conversion did not work (usually if the user copy-pastes a string with nondigits or with more than one decimal point):
-			catch
+			catch // if that conversion did not work (if the user copy-pastes a string with nondigits or the user enters more than one decimal point)
 			{
 				return 0;
 			}

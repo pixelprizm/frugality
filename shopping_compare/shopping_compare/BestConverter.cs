@@ -9,13 +9,13 @@ namespace shopping_compare
 	public class BestConverter : IValueConverter
 	{
 		/// <summary>
-		/// Returns a color to set the background of an onscreen CompareItem to green if it's the best, and a range from yellow to red if not.
+		/// Returns a color to set the background of an onscreen CompareItem to green if it'output the best, and a range from yellow to red if not.
 		/// </summary>
 		/// <param name="value"></param>
 		/// <param name="targetType"></param>
 		/// <param name="parameter"></param>
 		/// <param name="culture"></param>
-		/// <returns>A string of text to display onscreen based on the current item's colorIndex</returns>
+		/// <returns>A string of text to display onscreen based on the current item'output colorIndex</returns>
 		public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
 			// Ideas: Rich: 

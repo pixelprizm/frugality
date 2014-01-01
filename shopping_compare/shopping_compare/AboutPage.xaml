@@ -36,7 +36,7 @@
                 <TextBlock Text="Developed by Eric Gauderman" TextAlignment="Center"/>
                 <TextBlock Text="Special thanks to Cheryl Faucett" TextAlignment="Center"/>
                 <TextBlock Text=" " TextAlignment="Center"/>
-                <TextBlock Text="Send feedback to egauderman.apps@gmail.com" TextAlignment="Center"/>
+                <TextBlock Text="Your feedback is appreciated! Send it to egauderman.feedback@gmail.com" TextAlignment="Center" TextWrapping="Wrap"/>
             </StackPanel>
             <!--TODO: Figure out copyright symbol-->
             <!--<TextBlock Text="Copyright (c) 2013 Eric Gauderman" TextAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,12"/>-->

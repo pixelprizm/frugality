@@ -15,7 +15,7 @@ namespace shopping_compare
 		/// <param name="targetType"></param>
 		/// <param name="parameter"></param>
 		/// <param name="culture"></param>
-		/// <returns>A string of text to display onscreen based on the current item'output colorIndex</returns>
+		/// <returns>A string of text to display onscreen based on the currentCompareItem item'output colorIndex</returns>
 		public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
 			// Ideas: Rich: 

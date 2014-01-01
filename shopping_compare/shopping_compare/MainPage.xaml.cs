@@ -20,16 +20,9 @@ namespace shopping_compare
 	{
 		#region Data
 
-
-		
 		public ObservableCollection<CompareItem> CompareItems = new ObservableCollection<CompareItem>();
 
-		private double _lowestPricePerUnit = -1;
-		public double LowestPricePerUnit { get { return _lowestPricePerUnit; } set { _lowestPricePerUnit = value; } }
-		private double _highestPricePerUnit = -1;
-		public double HighestPricePerUnit { get { return _highestPricePerUnit; } set { _highestPricePerUnit = value; } }
-		private double _pricePerUnitRange = 0;
-		public double PricePerUnitRange { get { return _pricePerUnitRange; } set { _pricePerUnitRange = value; } }
+		private double _oldPricePerUnitRange = 0;
 
 		// Application Bar buttons and data:
 		private const double APP_BAR_OPACITY = 0.8;
@@ -40,9 +33,6 @@ namespace shopping_compare
 
 		#endregion Data
 
-		/// <summary>
-		/// Constructor for MainPage
-		/// </summary>
 		public MainPage()
 		{
 			InitializeComponent();
@@ -112,60 +102,64 @@ namespace shopping_compare
 		{
 			if(e.PropertyName == "PricePerUnit")
 			{
-				CompareItem current = (CompareItem)sender;
-				// First, update the HighestPricePerUnit and LowestPricePerUnit:
-				LowestPricePerUnit = double.MaxValue;
-				HighestPricePerUnit = double.MinValue;
+				CompareItem currentCompareItem = (CompareItem)sender;
+
+
+
+				// First, set highestPricePerUnit and lowestPricePerUnit and pricePerUnitRange:
+				double lowestPricePerUnit = double.MaxValue;
+				double highestPricePerUnit = double.MinValue;
 				foreach(CompareItem i in CompareItems)
 				{
 					if(i.Good)
 					{
-						if(i.PricePerUnit < LowestPricePerUnit)
+						if(i.PricePerUnit < lowestPricePerUnit)
 						{
-							LowestPricePerUnit = i.PricePerUnit;
+							lowestPricePerUnit = i.PricePerUnit;
 						}
-						if(i.PricePerUnit > HighestPricePerUnit)
+						if(i.PricePerUnit > highestPricePerUnit)
 						{
-							HighestPricePerUnit = i.PricePerUnit;
+							highestPricePerUnit = i.PricePerUnit;
 						}
 					}
 				}
-				if(LowestPricePerUnit == double.MaxValue || HighestPricePerUnit == double.MinValue)
+				if(lowestPricePerUnit == double.MaxValue || highestPricePerUnit == double.MinValue)
 				{
-					LowestPricePerUnit = -1;
-					HighestPricePerUnit = -1;
+					lowestPricePerUnit = -1;
+					highestPricePerUnit = -1;
 				}
-				double temp = PricePerUnitRange;
-				PricePerUnitRange = HighestPricePerUnit - LowestPricePerUnit;
+				double pricePerUnitRange = highestPricePerUnit - lowestPricePerUnit;
 
-				if(temp == PricePerUnitRange)
+
+
+				if (_oldPricePerUnitRange == pricePerUnitRange) // i.e. pricePerUnitRange hasn't changed
 				{
-					// If the range hasn't changed, the color of each CompareItem should stay the same, so just set current.ColorIndex
-					if(current.Good)
+					// The color of each CompareItem should stay the same, so just set currentCompareItem.ColorIndex
+					if(currentCompareItem.Good)
 					{
-						if(PricePerUnitRange == 0)
+						if(pricePerUnitRange == 0)
 						{
 							// If there is only one Good item or if all the items are the same, just call them the best price:
-							current.ColorIndex = 0;
+							currentCompareItem.ColorIndex = 0;
 						}
 						else
 						{
-							current.ColorIndex = (current.PricePerUnit - LowestPricePerUnit) / PricePerUnitRange;
+							currentCompareItem.ColorIndex = (currentCompareItem.PricePerUnit - lowestPricePerUnit) / pricePerUnitRange;
 						}
 					}
 					else
 					{
-						current.ColorIndex = -1;
+						currentCompareItem.ColorIndex = -1;
 					}
 				}
-				else
+				else // i.e. pricePerUnitRange has changed
 				{
-					// If the range has changed, update the ColorIndex of each CompareItem, normalizing from 0 to 1 based on the item'output priceperunit.
+					// Update the ColorIndex of each CompareItem, normalizing from 0 to 1 based on the item'output priceperunit.
 					foreach(CompareItem i in CompareItems)
 					{
-						if(i.Good && PricePerUnitRange != 0)
+						if(i.Good && pricePerUnitRange != 0)
 						{
-							i.ColorIndex = (i.PricePerUnit - LowestPricePerUnit) / PricePerUnitRange;
+							i.ColorIndex = (i.PricePerUnit - lowestPricePerUnit) / pricePerUnitRange;
 						}
 						else
 						{
@@ -173,6 +167,9 @@ namespace shopping_compare
 						}
 					}
 				}
+
+				// Set _oldPricePerUnitRange for next time.
+				_oldPricePerUnitRange = pricePerUnitRange;
 			}
 		}
 

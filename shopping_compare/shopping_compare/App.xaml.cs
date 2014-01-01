@@ -40,7 +40,7 @@ namespace shopping_compare
 			// Show graphics profiling information while debugging.
 			if (System.Diagnostics.Debugger.IsAttached)
 			{
-				// Display the current frame rate counters.
+				// Display the currentCompareItem frame rate counters.
 				Application.Current.Host.Settings.EnableFrameRateCounter = false;
 
 				// Show the areas of the app that are being redrawn in each frame.

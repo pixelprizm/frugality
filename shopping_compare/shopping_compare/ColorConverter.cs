@@ -49,8 +49,8 @@ namespace shopping_compare
 				throw new ArgumentOutOfRangeException("value");
 			}
 
-			//CompareItem.CompareItemStatus temp = (CompareItem.CompareItemStatus)value;
-			//switch(temp)
+			//CompareItem.CompareItemStatus oldPricePerUnitRange = (CompareItem.CompareItemStatus)value;
+			//switch(oldPricePerUnitRange)
 			//{
 			//	case CompareItem.CompareItemStatus.Blank:
 			//		return "#FF282828";

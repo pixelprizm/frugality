@@ -29,17 +29,20 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
+        <!--
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="CHEAPSKATE COMPANION" Style="{StaticResource PhoneTextNormalStyle}" FontWeight="Bold" Foreground="Green" FontSize="24"/>
         </StackPanel>
+        -->
 
         <!--ContentPanel-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <!--Note: Margin="12,0,12,0" use the same left margin for this and the AdBar (negative for the adbar)-->
+        <Grid x:Name="ContentPanel" Grid.Row="1">
             <ScrollViewer x:Name="CompareItemsScrollViewer">
                 <!-- The folowing StackPanel is here to allow a black bar at the very bottom of the list, which makes the list items go above the App Bar once the user scrolls to the bottom of the list. It is needed since the ScrollViewer (and the grid it's in) does not have a bottom margin and thus the App Bar is on top of it. -->
                 <StackPanel Orientation="Vertical">
                     <!-- The data context for the following ListBox is set to CompareItems in code behind. -->
-                    <ItemsControl x:Name="CompareItemsList" ItemsSource="{Binding}" Margin="0,10,0,-10">
+                    <ItemsControl x:Name="CompareItemsList" ItemsSource="{Binding}" Margin="12,10,12,-10">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <!-- The following Grid exists only to create colored margin area. -->
@@ -144,8 +147,9 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    
-                    <adctl:AdControl x:Name="AdBar" ApplicationId="924cbd72-28fe-44bf-9446-9b761635537b" AdUnitId="156684" IsAutoRefreshEnabled="True" IsAutoCollapseEnabled="False" CountryOrRegion="US" Grid.Row="0" Height="80" Width="480" />
+
+                    <adctl:AdControl x:Name="AdBar" Grid.Row="0" Height="80" Width="480"/>
+                    <!--Note: the following are set in code: ApplicationId="924cbd72-28fe-44bf-9446-9b761635537b" AdUnitId="156684" IsAutoRefreshEnabled="True" IsAutoCollapseEnabled="False" CountryOrRegion="{Binding RegionInfo.CurrentRegion.TwoLetterISORegionName}"-->
 
                     <!-- This Grid replaces the lower margin of the ContentPanel or CompareItemsScrollViewer. -->
                     <Grid x:Name="SpacerBar" Height="72"></Grid>

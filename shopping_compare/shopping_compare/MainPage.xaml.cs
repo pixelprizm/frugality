@@ -37,6 +37,14 @@ namespace shopping_compare
 		{
 			InitializeComponent();
 
+			// AdBar properties:
+			AdBar.ApplicationId = "924cbd72-28fe-44bf-9446-9b761635537b";
+			AdBar.AdUnitId = "156684";
+			AdBar.IsAutoRefreshEnabled = true;
+			//AdBar.IsAutoCollapseEnabled = true;
+			//AdBar.ApplicationId = "test_client";
+			//AdBar.AdUnitId = "TextAd";
+
 			#region App Bar Creation
 
 			// Note: I'm adding the app bar in code, not XAML, because you can dynamically change the app bar if you use code.
@@ -81,7 +89,7 @@ namespace shopping_compare
 		}
 
 		/// <summary>
-		/// Adds a new CompareItem to the list and subscribes UpdateColors to the CompareItem'output PropertyChanged event
+		/// Adds a new CompareItem to the list and subscribes UpdateColors to the CompareItem's PropertyChanged event
 		/// </summary>
 		public void AddCompareItem()
 		{

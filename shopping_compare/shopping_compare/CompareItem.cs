@@ -61,6 +61,9 @@ namespace shopping_compare
 		}
 
 		// Implicit field
+		/// <summary>
+		/// This is the number that is displayed in the top-left corner of the item on-screen (1-based, not 0-based)
+		/// </summary>
 		public int Number { get; private set; }
 
 		// The following property is generally for exterior use.

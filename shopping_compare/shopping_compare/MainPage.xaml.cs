@@ -41,7 +41,7 @@ namespace shopping_compare
 			AdBar.ApplicationId = "924cbd72-28fe-44bf-9446-9b761635537b";
 			AdBar.AdUnitId = "156684";
 			AdBar.IsAutoRefreshEnabled = true;
-			//AdBar.IsAutoCollapseEnabled = true;
+			AdBar.IsAutoCollapseEnabled = true;
 			//AdBar.ApplicationId = "test_client";
 			//AdBar.AdUnitId = "TextAd";
 
@@ -81,7 +81,7 @@ namespace shopping_compare
 
 			#endregion App Bar Creation
 
-			CompareItemsList.DataContext = CompareItems;
+			CompareItemsItemsControl.DataContext = CompareItems;
 
 			// Initially, 2 compare items (user can add more later):
 			AddCompareItem();
@@ -96,6 +96,8 @@ namespace shopping_compare
 			CompareItem temp = new CompareItem(CompareItems.Count+1);
 			temp.PropertyChanged += UpdateColors;
 			CompareItems.Add(temp);
+			CompareItemsScrollViewer.UpdateLayout();
+			CompareItemsScrollViewer.ScrollToVerticalOffset(double.MaxValue); // this is big-time hack.
 		}
 
 		#region Event Handlers
@@ -140,38 +142,48 @@ namespace shopping_compare
 
 
 
-				if (_oldPricePerUnitRange == pricePerUnitRange) // i.e. pricePerUnitRange hasn't changed
+				// Then, update the colors:
+				if (pricePerUnitRange == 0)
 				{
-					// The color of each CompareItem should stay the same, so just set currentCompareItem.ColorIndex
-					if(currentCompareItem.Good)
+					// If the pricePerUnitRange is zero, every CompareItem that's Good should have the same price per unit and be counted as Best.
+					foreach (CompareItem i in CompareItems)
 					{
-						if(pricePerUnitRange == 0)
+						if (i.Good)
 						{
-							// If there is only one Good item or if all the items are the same, just call them the best price:
-							currentCompareItem.ColorIndex = 0;
-						}
-						else
-						{
-							currentCompareItem.ColorIndex = (currentCompareItem.PricePerUnit - lowestPricePerUnit) / pricePerUnitRange;
-						}
-					}
-					else
-					{
-						currentCompareItem.ColorIndex = -1;
-					}
-				}
-				else // i.e. pricePerUnitRange has changed
-				{
-					// Update the ColorIndex of each CompareItem, normalizing from 0 to 1 based on the item'output priceperunit.
-					foreach(CompareItem i in CompareItems)
-					{
-						if(i.Good && pricePerUnitRange != 0)
-						{
-							i.ColorIndex = (i.PricePerUnit - lowestPricePerUnit) / pricePerUnitRange;
+							i.ColorIndex = 0;
 						}
 						else
 						{
 							i.ColorIndex = -1;
+						}
+					}
+				}
+				else
+				{
+					if (_oldPricePerUnitRange == pricePerUnitRange) // i.e. pricePerUnitRange hasn't changed
+					{
+						if (currentCompareItem.Good)
+						{
+							currentCompareItem.ColorIndex = (currentCompareItem.PricePerUnit - lowestPricePerUnit) / pricePerUnitRange;
+						}
+						else
+						{
+							currentCompareItem.ColorIndex = -1;
+						}
+					}
+					else // i.e. pricePerUnitRange has changed
+					{
+						// Update the ColorIndex of each CompareItem, normalizing from 0 to 1 based on the item'output priceperunit.
+						foreach (CompareItem i in CompareItems)
+						{
+							if (i.Good)
+							{
+								i.ColorIndex = (i.PricePerUnit - lowestPricePerUnit) / pricePerUnitRange;
+							}
+							else
+							{
+								i.ColorIndex = -1;
+							}
 						}
 					}
 				}

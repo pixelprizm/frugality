@@ -40,7 +40,7 @@ namespace shopping_compare
 			// Show graphics profiling information while debugging.
 			if (System.Diagnostics.Debugger.IsAttached)
 			{
-				// Display the currentCompareItem frame rate counters.
+				// Display the current frame rate counters.
 				Application.Current.Host.Settings.EnableFrameRateCounter = false;
 
 				// Show the areas of the app that are being redrawn in each frame.
@@ -51,7 +51,7 @@ namespace shopping_compare
 				//Application.Current.Host.Settings.EnableCacheVisualization = true;
 
 				// Disable the application idle detection by setting the UserIdleDetectionMode property of the
-				// application'output PhoneApplicationService object to Disabled.
+				// application's PhoneApplicationService object to Disabled.
 				// Caution:- Use this under debug mode only. Application that disables user idle detection will continue to run
 				// and consume battery power when the user is not using the phone.
 				PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;

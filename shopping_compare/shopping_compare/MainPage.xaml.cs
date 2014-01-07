@@ -200,7 +200,7 @@ namespace shopping_compare
 			if (!ApplicationBar.Buttons.Contains(_updateButton)) ApplicationBar.Buttons.Add(_updateButton);
 			if (ApplicationBar.Buttons.Contains(_addButton)) ApplicationBar.Buttons.Remove(_addButton);
 			if (ApplicationBar.Buttons.Contains(_resetButton)) ApplicationBar.Buttons.Remove(_resetButton);
-			ApplicationBar.IsMenuEnabled = false; // replaces: if (ApplicationBar.MenuItems.Contains(_aboutMenuItem)) ApplicationBar.MenuItems.Remove(_aboutMenuItem);
+			ApplicationBar.IsMenuEnabled = false;
 		}
 
 		private void TextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -217,7 +217,7 @@ namespace shopping_compare
 				if (ApplicationBar.Buttons.Contains(_updateButton)) ApplicationBar.Buttons.Remove(_updateButton);
 				if (!ApplicationBar.Buttons.Contains(_addButton)) ApplicationBar.Buttons.Add(_addButton);
 				if (!ApplicationBar.Buttons.Contains(_resetButton)) ApplicationBar.Buttons.Add(_resetButton);
-				ApplicationBar.IsMenuEnabled = true; // replaces: if (!ApplicationBar.MenuItems.Contains(_aboutMenuItem)) ApplicationBar.MenuItems.Add(_aboutMenuItem);
+				ApplicationBar.IsMenuEnabled = true;
 			}
 		}
 

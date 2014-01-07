@@ -30,7 +30,7 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="$  f r u g a l i t y" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FF00FF68" FontSize="24" Margin="48,0,0,0"/>
+            <TextBlock x:Name="ApplicationTitle" Text="$  f r u g a l i t y" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FF00FF68" FontSize="30" Margin="48,0,0,0"/>
         </StackPanel>
 
         <!--ContentPanel-->
@@ -47,7 +47,7 @@
                                 <Grid Margin="0,0,0,24" Background="{Binding ColorIndex, Converter={StaticResource ColorConverterX}}">
                                     <!-- The following Grid exists to create darkened area within the parent grid's colored area, with a margin. -->
                                     <!--#60282828 is the old value for Background.-->
-                                    <Grid Margin="4,4,4,4" Background="#60000000">
+                                    <Grid Margin="4,4,4,4" Background="#80000000">
                                         <!-- The following Grid exists to add a margin on the left and right between the text and the border of the darkened area, and to hold the components. -->
                                         <Grid Margin="4,0,4,0">
                                             <Grid.RowDefinitions>
@@ -98,11 +98,11 @@
                                                              InputScope="Number"
                                                              Text="{Binding Price, Converter={StaticResource NumberFormatterX}, Mode=TwoWay}"
                                                              Foreground="{StaticResource PhoneBackgroundBrush}"
-                                                             BorderBrush="{StaticResource PhoneBackgroundBrush}"
+                                                             BorderBrush="{Binding ColorIndex, Converter={StaticResource ColorConverterX}}"
                                                              GotFocus="TextBox_GotFocus"
                                                              LostFocus="TextBox_LostFocus"
-                                                             >
-                                                    </TextBox>
+                                                             />
+                                                        <!--BorderBrush used to be: "{StaticResource PhoneBackgroundBrush}"-->
                                                 </Grid>
                                                 <TextBlock Text="price of item"
                                                            Margin="0,-16,0,0"
@@ -115,10 +115,11 @@
                                                          InputScope="Number"
                                                          Text="{Binding Quantity, Converter={StaticResource NumberFormatterX}, Mode=TwoWay}"
                                                          Foreground="{StaticResource PhoneBackgroundBrush}"
-                                                         BorderBrush="{StaticResource PhoneBackgroundBrush}"
+                                                         BorderBrush="{Binding ColorIndex, Converter={StaticResource ColorConverterX}}"
                                                          GotFocus="TextBox_GotFocus"
                                                          LostFocus="TextBox_LostFocus"
                                                          />
+                                                <!--BorderBrush used to be: "{StaticResource PhoneBackgroundBrush}"-->
                                                 <TextBlock Text="units per package"
                                                            Margin="0,-16,0,0"
                                                            TextWrapping="Wrap"

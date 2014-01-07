@@ -15,7 +15,9 @@ namespace shopping_compare
 			if (colorIndex == -1)
 			{
 				// Return that nice dark gray color
-				return "#FF282828";
+				return "#FF404040";
+				// old:
+				// return "#FF282828";
 			}
 			else if (colorIndex == 0)
 			{

@@ -196,10 +196,10 @@ namespace shopping_compare
 		private void TextBox_GotFocus(object sender, RoutedEventArgs e)
 		{
 			ApplicationBar.Opacity = 1.0;
-			if(!ApplicationBar.Buttons.Contains(_updateButton)) ApplicationBar.Buttons.Add(_updateButton);
-			if(ApplicationBar.Buttons.Contains(_addButton)) ApplicationBar.Buttons.Remove(_addButton);
-			if(ApplicationBar.Buttons.Contains(_resetButton)) ApplicationBar.Buttons.Remove(_resetButton);
-			if(ApplicationBar.MenuItems.Contains(_aboutMenuItem)) ApplicationBar.MenuItems.Remove(_aboutMenuItem);
+			if (!ApplicationBar.Buttons.Contains(_updateButton)) ApplicationBar.Buttons.Add(_updateButton);
+			if (ApplicationBar.Buttons.Contains(_addButton)) ApplicationBar.Buttons.Remove(_addButton);
+			if (ApplicationBar.Buttons.Contains(_resetButton)) ApplicationBar.Buttons.Remove(_resetButton);
+			if (ApplicationBar.MenuItems.Contains(_aboutMenuItem)) ApplicationBar.MenuItems.Remove(_aboutMenuItem);
 		}
 
 		private void TextBox_LostFocus(object sender, RoutedEventArgs e)

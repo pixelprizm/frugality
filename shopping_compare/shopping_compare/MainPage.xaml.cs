@@ -195,11 +195,12 @@ namespace shopping_compare
 
 		private void TextBox_GotFocus(object sender, RoutedEventArgs e)
 		{
-			ApplicationBar.Opacity = 1.0;
+			//ApplicationBar.Opacity = 1.0; // this causes the screen to sometimes not scroll up when the on-screen keyboard is brought up (due to, I believe, a multithreading race condition between this thread and whatever thread causes the screen to automatically scroll up when the on-screen keyboard is brought up.)
+
 			if (!ApplicationBar.Buttons.Contains(_updateButton)) ApplicationBar.Buttons.Add(_updateButton);
 			if (ApplicationBar.Buttons.Contains(_addButton)) ApplicationBar.Buttons.Remove(_addButton);
 			if (ApplicationBar.Buttons.Contains(_resetButton)) ApplicationBar.Buttons.Remove(_resetButton);
-			if (ApplicationBar.MenuItems.Contains(_aboutMenuItem)) ApplicationBar.MenuItems.Remove(_aboutMenuItem);
+			ApplicationBar.IsMenuEnabled = false; // replaces: if (ApplicationBar.MenuItems.Contains(_aboutMenuItem)) ApplicationBar.MenuItems.Remove(_aboutMenuItem);
 		}
 
 		private void TextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -212,10 +213,11 @@ namespace shopping_compare
 			else // if we've deselected the TextBox and focus is not on any TextBox
 			{
 				ApplicationBar.Opacity = APP_BAR_OPACITY;
-				ApplicationBar.Buttons.Remove(_updateButton);
-				ApplicationBar.Buttons.Add(_addButton);
-				ApplicationBar.Buttons.Add(_resetButton);
-				ApplicationBar.MenuItems.Add(_aboutMenuItem);
+
+				if (ApplicationBar.Buttons.Contains(_updateButton)) ApplicationBar.Buttons.Remove(_updateButton);
+				if (!ApplicationBar.Buttons.Contains(_addButton)) ApplicationBar.Buttons.Add(_addButton);
+				if (!ApplicationBar.Buttons.Contains(_resetButton)) ApplicationBar.Buttons.Add(_resetButton);
+				ApplicationBar.IsMenuEnabled = true; // replaces: if (!ApplicationBar.MenuItems.Contains(_aboutMenuItem)) ApplicationBar.MenuItems.Add(_aboutMenuItem);
 			}
 		}
 

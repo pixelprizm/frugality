@@ -1,4 +1,4 @@
-﻿<phone:PhoneApplicationPage xmlns:UI="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI" 
+﻿<phone:PhoneApplicationPage
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -20,24 +20,22 @@
         <local:BestConverter x:Key="BestConverterX"/>
         <local:NumberFormatter x:Key="NumberFormatterX"/>
     </phone:PhoneApplicationPage.Resources>
-    
+
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <!--
-            <RowDefinition Height="Auto"/> (add this back to Grid.RowDefinitions and change Grid.Row of the ContentPanel if putting the application title back in)
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="CHEAPSKATE COMPANION" Style="{StaticResource PhoneTextNormalStyle}" FontWeight="Bold" Foreground="Green" FontSize="24"/>
+            <TextBlock x:Name="ApplicationTitle" Text="$  f r u g a l i t y" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FF00FF68" FontSize="24" Margin="48,0,0,0"/>
         </StackPanel>
-        -->
 
         <!--ContentPanel-->
-        <!--Note: Margin="12,0,12,0" use the same left margin for this and the AdBar (negative for the adbar)-->
-        <Grid x:Name="ContentPanel" Grid.Row="0">
+        <Grid x:Name="ContentPanel" Grid.Row="1">
+            <!-- Not setting margin for this because there is a margin on CompareItemsItemsControl but not AdBar. -->
             <ScrollViewer x:Name="CompareItemsScrollViewer">
                 <!-- The folowing StackPanel is here to allow a black bar at the very bottom of the list, which makes the list items go above the App Bar once the user scrolls to the bottom of the list. It is needed since the ScrollViewer (and the grid it's in) does not have a bottom margin and thus the App Bar is on top of it. -->
                 <StackPanel Orientation="Vertical">
@@ -48,7 +46,8 @@
                                 <!-- The following Grid exists only to create colored margin area. -->
                                 <Grid Margin="0,0,0,24" Background="{Binding ColorIndex, Converter={StaticResource ColorConverterX}}">
                                     <!-- The following Grid exists to create darkened area within the parent grid's colored area, with a margin. -->
-                                    <Grid Margin="4,4,4,4" Background="#60282828">
+                                    <!--#60282828 is the old value for Background.-->
+                                    <Grid Margin="4,4,4,4" Background="#60000000">
                                         <!-- The following Grid exists to add a margin on the left and right between the text and the border of the darkened area, and to hold the components. -->
                                         <Grid Margin="4,0,4,0">
                                             <Grid.RowDefinitions>
@@ -102,7 +101,8 @@
                                                              BorderBrush="{StaticResource PhoneBackgroundBrush}"
                                                              GotFocus="TextBox_GotFocus"
                                                              LostFocus="TextBox_LostFocus"
-                                                             />
+                                                             >
+                                                    </TextBox>
                                                 </Grid>
                                                 <TextBlock Text="price of item"
                                                            Margin="0,-16,0,0"
@@ -155,7 +155,8 @@
                     <Grid x:Name="SpacerBar" Height="72"></Grid>
                 </StackPanel>
             </ScrollViewer>
-        </Grid> <!--this is ContentPanel-->
+        </Grid>
+        <!--this is ContentPanel-->
     </Grid>
 
 </phone:PhoneApplicationPage>

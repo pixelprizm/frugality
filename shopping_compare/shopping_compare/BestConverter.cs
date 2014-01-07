@@ -9,7 +9,7 @@ namespace shopping_compare
 	public class BestConverter : IValueConverter
 	{
 		/// <summary>
-		/// Returns a color to set the background of an onscreen CompareItem to green if it's the best, and a range from yellow to red if not.
+		/// Returns a string to display, based on the colorindex, such as "BEST PRICE PER UNIT".
 		/// </summary>
 		/// <param name="value"></param>
 		/// <param name="targetType"></param>

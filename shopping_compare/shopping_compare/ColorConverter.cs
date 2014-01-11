@@ -28,13 +28,10 @@ namespace shopping_compare
 			{
 				// Return that nice dark gray color
 				return "#FF404040";
-				// old:
-				// return "#FF282828";
 			}
 			else if (colorIndex == 0)
 			{
 				return "Green";
-				//return "#FF00FF00";
 			}
 			else if (colorIndex > 0 && colorIndex <= 1)
 			{

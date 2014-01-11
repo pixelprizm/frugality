@@ -18,9 +18,10 @@ namespace shopping_compare
 			double val = (double)value;
 			string parameterString = parameter as string;
 
-			// Price Per Unit output:
 			if (parameterString == "PricePerUnitOutput")
 			{
+				// Price Per Unit output:
+
 				if (val == 0 || val == -1)
 				{
 					return "";
@@ -34,14 +35,23 @@ namespace shopping_compare
 					return MoneyFormatter.FormattedDollarCentString(val);
 				}
 			}
-			// Output back to the textboxes:
 			else
 			{
+				// Output back to the textboxes:
+
 				if (val == 0)
 				{
 					return "";
 				}
-				return MoneyFormatter.ToStringAddZeroIfNeeded(val);
+
+				if (parameterString == "Money")
+				{
+					return MoneyFormatter.ToStringAddZeroIfNeeded(val);
+				}
+				else
+				{
+					return val.ToString();
+				}
 			}
 		}
 

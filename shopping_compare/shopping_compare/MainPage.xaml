@@ -108,7 +108,7 @@
                                                         />
                                                     <TextBox x:Name="PriceBox"
                                                              InputScope="Number"
-                                                             Text="{Binding Price, Converter={StaticResource NumberFormatterX}, Mode=TwoWay}"
+                                                             Text="{Binding Price, Converter={StaticResource NumberFormatterX}, ConverterParameter=Money, Mode=TwoWay}"
                                                              Foreground="{StaticResource PhoneBackgroundBrush}"
                                                              BorderBrush="{Binding ColorIndex, Converter={StaticResource ColorConverterX}}"
                                                              GotFocus="TextBox_GotFocus"
@@ -130,7 +130,6 @@
                                                          GotFocus="TextBox_GotFocus"
                                                          LostFocus="TextBox_LostFocus"
                                                          />
-                                                <!--BorderBrush used to be: "{StaticResource PhoneBackgroundBrush}"-->
                                                 <TextBlock Text="units per package"
                                                            Margin="0,-16,0,0"
                                                            TextWrapping="Wrap"

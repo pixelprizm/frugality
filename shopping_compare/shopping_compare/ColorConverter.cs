@@ -62,19 +62,6 @@ namespace shopping_compare
 			{
 				throw new ArgumentOutOfRangeException("value");
 			}
-
-			//CompareItem.CompareItemStatus oldPricePerUnitRange = (CompareItem.CompareItemStatus)value;
-			//switch(oldPricePerUnitRange)
-			//{
-			//	case CompareItem.CompareItemStatus.Blank:
-			//		return "#FF282828";
-			//	case CompareItem.CompareItemStatus.Best:
-			//		return "Green";
-			//	case CompareItem.CompareItemStatus.NotBest:
-			//		return "Red";
-			//}
-			//// shouldn't get here if value is limited to Blank, Best, or NotBest
-			//return null;
 		}
 
 		// Not implemented:

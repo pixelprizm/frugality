@@ -30,7 +30,7 @@ namespace shopping_compare
 			}
 			else if (colorIndex > 0 && colorIndex < 1)
 			{
-				if (colorIndex < .125) return "NEARLY BEST";
+				if (colorIndex < .05) return "NEARLY BEST";
 				return "";
 			}
 			else if (colorIndex == 1)

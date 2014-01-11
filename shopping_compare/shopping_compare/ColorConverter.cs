@@ -8,6 +8,18 @@ namespace shopping_compare
 {
 	public class ColorConverter : IValueConverter
 	{
+		// Constants:
+		public double DOLLAR_COLORINDEX { get { return 0.0; } }
+		public double F_COLORINDEX { get { return 0.00000001; } }
+		public double R_COLORINDEX { get { return 0.1; } }
+		public double U_COLORINDEX { get { return 0.2; } }
+		public double G_COLORINDEX { get { return 0.4; } }
+		public double A_COLORINDEX { get { return 0.5; } }
+		public double L_COLORINDEX { get { return 0.6; } }
+		public double I_COLORINDEX { get { return 0.8; } }
+		public double T_COLORINDEX { get { return 0.9; } }
+		public double Y_COLORINDEX { get { return 1.0; } }
+
 		public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
 			// value is the ColorIndex of a CompareItem

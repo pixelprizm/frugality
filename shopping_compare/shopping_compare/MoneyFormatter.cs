@@ -11,25 +11,41 @@ namespace shopping_compare
 		/// Returns a formatted string for displaying a money value to the screen.
 		/// </summary>
 		/// <returns>a formatted string for this Money</returns>
-		public static string FormattedDollarCentString(double value)
+		public static string FormattedDollarCentString(double dollars)
 		{
-			// here, value is a double in (0,double.MaxValue]
-			if (Math.Abs(value) < 1)
+			// here, dollars is any double
+
+			if (dollars < 0 || double.IsNaN(dollars) || double.IsPositiveInfinity(dollars))
 			{
-				return Math.Round(value * 100, 4).ToString() + " cents";
+				throw new ArgumentOutOfRangeException("value is negative, NaN, or positive infinity.");
 			}
-			// here, value is a double in [1,double.MaxValue] (or that range negative)
+			else if (dollars < 1)
+			{
+				// here, dollars is a double in [0,1)
+				// So, format it as cents:
+
+				double cents = dollars * 100;
+
+				// Keeping 3 sigfigs:
+				int roundDigits =
+					(cents < 10.0) ?
+					((cents < 1.00) ? 3 : 2) :
+					1;
+
+				return Math.Round(cents, roundDigits).ToString() + " cents";
+			}
 			else
 			{
-				return "$" + ToStringAddZeroIfNeeded(Math.Round(value, 4));
+				// here, dollars is a double in [1,double.MaxValue]
+				// So, format it in dollar format:
+
+				return "$" + ToStringAddZeroIfNeeded(Math.Round(dollars, 2));
 			}
 		}
 
 		/// <summary>
 		/// Formats the inputted double-type value as a string, and if it will turn out with one decimal place, adds a zero.
 		/// </summary>
-		/// <param name="value"></param>
-		/// <returns></returns>
 		public static string ToStringAddZeroIfNeeded(double value)
 		{
 			#region commented out: long number handling

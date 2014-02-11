@@ -97,7 +97,7 @@ namespace shopping_compare
 			temp.PropertyChanged += UpdateColors;
 			CompareItems.Add(temp);
 			CompareItemsScrollViewer.UpdateLayout();
-			CompareItemsScrollViewer.ScrollToVerticalOffset(double.MaxValue); // this is big-time hack.
+			CompareItemsScrollViewer.ScrollToVerticalOffset(double.MaxValue); // this is big-time hack to scroll to the bottom.
 		}
 
 		#region Event Handlers

@@ -101,12 +101,14 @@
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ApplicationIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Icons\Application_IconImage_62x62.png" />
+    <Content Include="Icons\Application_TileImage_173x173.png" />
+    <Content Include="Icons\Marketplace_Desktop_200x200.png" />
+    <Content Include="Icons\Marketplace_Device_173x173.png" />
+    <Content Include="Icons\Marketplace_Device_99x99.png" />
     <Content Include="Images\app_bar_add.png" />
     <Content Include="Images\app_bar_reset.png" />
     <Content Include="Images\app_bar_update.png" />

@@ -57,6 +57,19 @@ namespace shopping_compare
 				PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
 			}
 
+			// Uncomment to get the title's letters' colors in the debug log (must also uncomment the "Uncomment to enable output of color values as decimal" section in ColorConverter.cs)
+			//ColorConverter cc = new ColorConverter();
+			//System.Diagnostics.Debugger.Log(0, "", "Letter colors:\n");
+			//System.Diagnostics.Debugger.Log(0, "", "  $: " + cc.Convert(cc.DOLLAR_COLORINDEX, typeof(string), "decimal", null) + "\n");
+			//System.Diagnostics.Debugger.Log(0, "", "  f: " + cc.Convert(cc.F_COLORINDEX, typeof(string), "decimal", null) + "\n");
+			//System.Diagnostics.Debugger.Log(0, "", "  r: " + cc.Convert(cc.R_COLORINDEX, typeof(string), "decimal", null) + "\n");
+			//System.Diagnostics.Debugger.Log(0, "", "  u: " + cc.Convert(cc.U_COLORINDEX, typeof(string), "decimal", null) + "\n");
+			//System.Diagnostics.Debugger.Log(0, "", "  g: " + cc.Convert(cc.G_COLORINDEX, typeof(string), "decimal", null) + "\n");
+			//System.Diagnostics.Debugger.Log(0, "", "  a: " + cc.Convert(cc.A_COLORINDEX, typeof(string), "decimal", null) + "\n");
+			//System.Diagnostics.Debugger.Log(0, "", "  l: " + cc.Convert(cc.L_COLORINDEX, typeof(string), "decimal", null) + "\n");
+			//System.Diagnostics.Debugger.Log(0, "", "  i: " + cc.Convert(cc.I_COLORINDEX, typeof(string), "decimal", null) + "\n");
+			//System.Diagnostics.Debugger.Log(0, "", "  t: " + cc.Convert(cc.T_COLORINDEX, typeof(string), "decimal", null) + "\n");
+			//System.Diagnostics.Debugger.Log(0, "", "  y: " + cc.Convert(cc.Y_COLORINDEX, typeof(string), "decimal", null) + "\n");
 		}
 
 		// Code to execute when the application is launching (eg, from Start)

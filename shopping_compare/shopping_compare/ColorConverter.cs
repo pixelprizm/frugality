@@ -31,7 +31,7 @@ namespace shopping_compare
 			}
 			else if (colorIndex == 0)
 			{
-				return "Green";
+				return "#FF008000";
 			}
 			else if (colorIndex > 0 && colorIndex <= 1)
 			{
@@ -48,6 +48,13 @@ namespace shopping_compare
 				// Ensure that greenValue isn't out of the range of a byte:
 				if (greenValue >= 256) greenValue = 255;
 				// Here, colorValue is an integer in [0,256) (low is expensive, high is cheap).
+
+				// Uncomment to enable output of color values as decimal
+				//if ((parameter as string) == "decimal")
+				//{
+				//	return "255,255," + greenValue + ",0";
+				//}
+
 				// Convert greenValue to a string-formatted hex color code:
 				return
 					"#FF" + // opacity

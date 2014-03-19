@@ -13,6 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell; // for App Bar
+using Microsoft.Phone.Tasks; // for MarketplaceReviewTask
 
 namespace shopping_compare
 {
@@ -30,6 +31,7 @@ namespace shopping_compare
 		private ApplicationBarIconButton _resetButton;
 		private ApplicationBarIconButton _updateButton;
 		private ApplicationBarMenuItem _aboutMenuItem;
+		private ApplicationBarMenuItem _reviewMenuItem;
 
 		#endregion Data
 
@@ -79,6 +81,12 @@ namespace shopping_compare
 			ApplicationBar.MenuItems.Add(_aboutMenuItem);
 			_aboutMenuItem.Click += _aboutMenuItem_Click;
 
+			// Link to Rate and Review:
+			_reviewMenuItem = new ApplicationBarMenuItem();
+			_reviewMenuItem.Text = "rate & review";
+			ApplicationBar.MenuItems.Add(_reviewMenuItem);
+			_reviewMenuItem.Click += _reviewMenuItem_Click;
+
 			#endregion App Bar Creation
 
 			CompareItemsItemsControl.DataContext = CompareItems;
@@ -116,7 +124,7 @@ namespace shopping_compare
 
 
 
-				// First, set highestPricePerUnit and lowestPricePerUnit and pricePerUnitRange:
+				#region First, set highestPricePerUnit and lowestPricePerUnit and pricePerUnitRange.
 				double lowestPricePerUnit = double.MaxValue;
 				double highestPricePerUnit = double.MinValue;
 				foreach(CompareItem i in CompareItems)
@@ -139,10 +147,11 @@ namespace shopping_compare
 					highestPricePerUnit = -1;
 				}
 				double pricePerUnitRange = highestPricePerUnit - lowestPricePerUnit;
+				#endregion
 
 
 
-				// Then, update the colors:
+				#region Then, update the colors.
 				if (pricePerUnitRange == 0)
 				{
 					// If the pricePerUnitRange is zero, every CompareItem that's Good should have the same price per unit and be counted as Best.
@@ -187,6 +196,9 @@ namespace shopping_compare
 						}
 					}
 				}
+				#endregion
+
+
 
 				// Set _oldPricePerUnitRange for next time.
 				_oldPricePerUnitRange = pricePerUnitRange;
@@ -254,6 +266,13 @@ namespace shopping_compare
 		void _aboutMenuItem_Click(object sender, EventArgs e)
 		{
 			NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
+		}
+
+		void _reviewMenuItem_Click(object sender, EventArgs e)
+		{
+			MarketplaceReviewTask marketplaceReviewTask = new MarketplaceReviewTask();
+
+			marketplaceReviewTask.Show();
 		}
 
 		#endregion App Bar button click handlers

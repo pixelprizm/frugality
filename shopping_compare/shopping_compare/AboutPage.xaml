@@ -6,12 +6,17 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:shopping_compare"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
+
+    <phone:PhoneApplicationPage.Resources>
+        <local:ColorConverter x:Key="ColorConverterX"/>
+    </phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -20,26 +25,26 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <!--
-            <TextBlock x:Name="ApplicationTitle" Text="CHEAPSKATE COMPANION" Style="{StaticResource PhoneTextNormalStyle}" FontWeight="Bold" Foreground="Green" FontSize="24"/>
-            -->
-            <TextBlock Text="about" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
-
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,36">
             <StackPanel>
-                <Image Height="200" Source="/ApplicationIcon.png"/>
-                <TextBlock Text="Cheapskate Companion" TextAlignment="Center" FontSize="36"/>
-                <TextBlock Text="Version 1.1" TextAlignment="Center"/>
+                <StackPanel x:Name="TitlePanel" Orientation="Horizontal" Grid.Row="0" Margin="0,24,0,12" HorizontalAlignment="Center">
+                    <TextBlock x:Name="DollarSign" FontSize="110" VerticalAlignment="Center">
+                        <Span Foreground="{Binding DOLLAR_COLORINDEX, Source={StaticResource ColorConverterX}, Converter={StaticResource ColorConverterX}}">$</Span>
+                    </TextBlock>
+                    <TextBlock x:Name="ApplicationTitle" FontSize="80" VerticalAlignment="Center" Margin="8,0,0,0">
+                        <!--Note: these spans have to be on the same line because otherwise, it inserts a space between each letter.-->
+                        <Span Foreground="{Binding F_COLORINDEX, Source={StaticResource ColorConverterX}, Converter={StaticResource ColorConverterX}}">f</Span><Span Foreground="{Binding R_COLORINDEX, Source={StaticResource ColorConverterX}, Converter={StaticResource ColorConverterX}}">r</Span><Span Foreground="{Binding U_COLORINDEX, Source={StaticResource ColorConverterX}, Converter={StaticResource ColorConverterX}}">u</Span><Span Foreground="{Binding G_COLORINDEX, Source={StaticResource ColorConverterX}, Converter={StaticResource ColorConverterX}}">g</Span><Span Foreground="{Binding A_COLORINDEX, Source={StaticResource ColorConverterX}, Converter={StaticResource ColorConverterX}}">a</Span><Span Foreground="{Binding L_COLORINDEX, Source={StaticResource ColorConverterX}, Converter={StaticResource ColorConverterX}}">l</Span><Span Foreground="{Binding I_COLORINDEX, Source={StaticResource ColorConverterX}, Converter={StaticResource ColorConverterX}}">i</Span><Span Foreground="{Binding T_COLORINDEX, Source={StaticResource ColorConverterX}, Converter={StaticResource ColorConverterX}}">t</Span><Span Foreground="{Binding Y_COLORINDEX, Source={StaticResource ColorConverterX}, Converter={StaticResource ColorConverterX}}">y</Span>
+                    </TextBlock>
+                </StackPanel>
+                <!--note: Or, could put the application icon here.-->
+                <TextBlock Text="Version 1.1" TextAlignment="Center" Foreground="{Binding U_COLORINDEX, Source={StaticResource ColorConverterX}, Converter={StaticResource ColorConverterX}}" FontSize="30"/>
                 <TextBlock Text=" " TextAlignment="Center"/>
-                <TextBlock Text="Developed by Eric Gauderman" TextAlignment="Center"/>
-                <TextBlock Text="Special thanks to Cheryl Faucett" TextAlignment="Center"/>
+                <TextBlock Text="Developed by Eric Gauderman" TextAlignment="Center" Foreground="{Binding F_COLORINDEX, Source={StaticResource ColorConverterX}, Converter={StaticResource ColorConverterX}}" FontSize="30"/>
+                <TextBlock Text="Special thanks to Cheryl Faucett" TextAlignment="Center" Foreground="{Binding I_COLORINDEX, Source={StaticResource ColorConverterX}, Converter={StaticResource ColorConverterX}}" FontSize="26"/>
                 <TextBlock Text=" " TextAlignment="Center"/>
-                <TextBlock Text="Your feedback is appreciated! Send it to egauderman.feedback@gmail.com" TextAlignment="Center" TextWrapping="Wrap"/>
             </StackPanel>
+            <TextBlock Text="Your feedback is appreciated! Send it to egauderman.feedback@gmail.com" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="24"  Foreground="{Binding Y_COLORINDEX, Source={StaticResource ColorConverterX}, Converter={StaticResource ColorConverterX}}"/>
             <!--TODO: Figure out copyright symbol-->
             <!--<TextBlock Text="Copyright (c) 2013 Eric Gauderman" TextAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,12"/>-->
         </Grid>

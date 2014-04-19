@@ -164,8 +164,7 @@
                     <Grid x:Name="SpacerBar" Height="72"></Grid>
                 </StackPanel>
             </ScrollViewer>
-        </Grid>
-        <!--this is ContentPanel-->
+        </Grid> <!--this is ContentPanel-->
     </Grid>
 
 </phone:PhoneApplicationPage>

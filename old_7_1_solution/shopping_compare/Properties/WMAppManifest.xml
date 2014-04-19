@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{a3c20e48-ee92-44f0-acb5-e39667621ce2}" Title="frugality" RuntimeType="Silverlight" Version="1.2.0.0" Genre="apps.normal" Author="Eric Gauderman" Description="Frugality easily compares prices for you so that you can make the best shopping decision." Publisher="Eric Gauderman" BitsPerPixel="32">
+  <App xmlns="" ProductID="{a3c20e48-ee92-44f0-acb5-e39667621ce2}" Title="frugality" RuntimeType="Silverlight" Version="1.1.0.0" Genre="apps.normal" Author="Eric Gauderman" Description="Frugality easily compares prices for you so that you can make the best shopping decision." Publisher="Eric Gauderman" BitsPerPixel="32">
     <IconPath IsRelative="true" IsResource="false">Icons\Application_IconImage_62x62.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_IDENTITY_USER" />

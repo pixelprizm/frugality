@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:shopping_compare"
     xmlns:adctl="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI"
+    xmlns:adduplex="clr-namespace:AdDuplex;assembly=AdDuplex.WindowsPhone"
     x:Class="shopping_compare.MainPage"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -157,7 +158,8 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
 
-                    <adctl:AdControl x:Name="AdBar" Grid.Row="0" Height="80" Width="480"/>
+                    <adduplex:AdControl x:Name="AdDuplexAd" AppId="98327" IsTest="True" Visibility="Collapsed" AdLoadingError="AdDuplexAd_AdLoadingError"/>
+                    <adctl:AdControl x:Name="AdBar" Grid.Row="0" Height="80" Width="480" ErrorOccurred="AdBar_ErrorOccurred"/>
                     <!--Note: the following are set in code: ApplicationId="924cbd72-28fe-44bf-9446-9b761635537b" AdUnitId="156684" IsAutoRefreshEnabled="True" IsAutoCollapseEnabled="False" CountryOrRegion="{Binding RegionInfo.CurrentRegion.TwoLetterISORegionName}"-->
 
                     <!-- This Grid replaces the lower margin of the ContentPanel or CompareItemsScrollViewer. -->

@@ -25,6 +25,10 @@ namespace shopping_compare
 
 		private double _oldPricePerUnitRange = 0;
 
+        // Ad bars timer info:
+        private System.Threading.Timer _adBarSwitcherTimer;
+        private const int AD_SWITCH_INTERVAL = 7; // in seconds
+
 		// Application Bar buttons and data:
 		private const double APP_BAR_OPACITY = 0.8;
 		private ApplicationBarIconButton _addButton;
@@ -94,6 +98,9 @@ namespace shopping_compare
 			// Initially, 2 compare items (user can add more later):
 			AddCompareItem();
 			AddCompareItem();
+
+            // Start the timer for switching between ad bars
+            _adBarSwitcherTimer = new System.Threading.Timer(switchAd, null, AD_SWITCH_INTERVAL * 1000, AD_SWITCH_INTERVAL * 1000);
 		}
 
 		/// <summary>
@@ -279,6 +286,58 @@ namespace shopping_compare
 
 		#endregion App Bar button click handlers
 
-		#endregion Event Handlers
-	}
+        #region Ad Switching
+
+        /// <summary>
+        /// Switches to AdDuplex
+        /// </summary>
+        private void AdBar_ErrorOccurred(object sender, Microsoft.Advertising.AdErrorEventArgs e)
+        {
+            switchToAdDuplex();
+        }
+
+        /// <summary>
+        /// Switches to PubCenter
+        /// </summary>
+        private void AdDuplexAd_AdLoadingError(object sender, AdDuplex.AdLoadingErrorEventArgs e)
+        {
+            switchToPubCenter();
+        }
+
+        /// <summary>
+        /// Collapses PubCenterAd and makes AdDuplexAd visible
+        /// </summary>
+        private void switchToAdDuplex() {
+            AdBar.Visibility = System.Windows.Visibility.Collapsed;
+            AdDuplexAd.Visibility = System.Windows.Visibility.Visible;
+        }
+        /// <summary>
+        /// Collapses AdDuplexAd and makes PubCenterAd visible
+        /// </summary>
+        private void switchToPubCenter() {
+            AdDuplexAd.Visibility = System.Windows.Visibility.Collapsed;
+            AdBar.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        /// <summary>
+        /// This method switches the app bar to the opposite service.
+        /// This method satisfies the delegate System.Threading.TimerCallback.
+        /// </summary>
+        /// <param name="state"> Required for System.Threading.TimerCallback. </param>
+        private void switchAd(object state)
+        {
+            if(AdDuplexAd.Visibility==System.Windows.Visibility.Collapsed)
+            {
+                switchToAdDuplex();
+            }
+            else
+            {
+                switchToPubCenter();
+            }
+        }
+
+        #endregion Ad Switching
+
+        #endregion Event Handlers
+    }
 }
